@@ -105,4 +105,11 @@ class NodeTest < Minitest::Test
     list.append("Scraping", {"spare wagon tongues" => 3})
     assert_equal ({"pounds of food" => 400, "spare wagon tongues" => 3}), list.supplies
   end
+
+  def test_go_hunting
+    list = WagonTrain.new
+    list.append("Burke", {"pounds of food" => 200})
+    assert_equal ({"pounds of food" => 306}), wt.supplies
+  end
+
 end
