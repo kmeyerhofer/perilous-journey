@@ -1,7 +1,7 @@
 require_relative 'node.rb'
 require 'pry'
 class LinkedList
-  attr_accessor :head, :count, :append
+  attr_accessor :head, :count, :append, :go_hunting
 
   def initialize
     @head = head
@@ -127,13 +127,18 @@ class LinkedList
     node
   end
 
-  def supplies
+  def supplies(hunting = 0)
     summed_hash = {}
     current = @head
+    hunting_counter = 0
     while current != nil
       current_hash = current.supplies
       current_hash.each do |key, value|
-        if summed_hash.has_key?(key)
+        if (summed_hash.has_key?("pounds of food") || current_hash.has_key?("pounds of food")) && key == "pounds of food" && hunting_counter < 1
+          current_hash["pounds of food"] += hunting
+          summed_hash.store(key, (value + hunting))
+          hunting_counter += 1
+        elsif summed_hash.has_key?(key)
           summed_hash[key] += value
         else
           summed_hash.store(key, value)
@@ -143,4 +148,28 @@ class LinkedList
     end
     summed_hash
   end
+
+  def hunting_values
+    {"bison" => 100, "deer" => 40, "squirrel" => 2}
+  end
+
+  def go_hunting
+    num_of_animals = rand(0..5)
+    if num_of_animals == 0
+      puts "You got #{num_of_animals} squirrels, #{num_of_animals} deer, #{num_of_animals} and #{num_of_animals} bison for #{num_of_animals} pounds of food."
+    end
+    animals = ["squirrel", "deer", "bison"]
+    animal_selector = []
+    num_of_animals.times do |animal_total|
+      animal_selector.push(animals[(rand(0..2))])
+    end
+    animal_pounds = 0
+    animal_selector.each do |animal_weight|
+      animal_meat = hunting_values[animal_weight]
+      animal_pounds += animal_meat
+    end
+    puts "You got #{animal_selector} for #{animal_pounds} pounds of food"
+    supplies(animal_pounds)
+  end
+
 end
