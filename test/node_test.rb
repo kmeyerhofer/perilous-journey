@@ -1,6 +1,6 @@
 require 'minitest/autorun'
-require './lib/node'
-require './lib/linked_list'
+#require './lib/node'
+#require './lib/linked_list'
 require './lib/wagon_train'
 
 class NodeTest < Minitest::Test
@@ -107,9 +107,11 @@ class NodeTest < Minitest::Test
   end
 
   def test_go_hunting
+    skip
     list = WagonTrain.new
     list.append("Burke", {"pounds of food" => 200})
-    assert_equal ({"pounds of food" => 306}), wt.supplies
+    list.append("Marshall", {"pounds of food" => 200})
+    assert_equal ({"pounds of food" => 306}), list.go_hunting
   end
 
 end
