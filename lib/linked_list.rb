@@ -121,7 +121,7 @@ class LinkedList
       counter += 1
       current = current.next_node
     end
-    puts "The #{current.next_node.surname} family has died of dysentery"
+    "The #{current.next_node.surname} family has died of dysentery"
     node = current.next_node
     current.next_node = nil
     node
@@ -156,20 +156,33 @@ class LinkedList
   def go_hunting
     num_of_animals = rand(0..5)
     if num_of_animals == 0
-      puts "You got #{num_of_animals} squirrels, #{num_of_animals} deer, #{num_of_animals} and #{num_of_animals} bison for #{num_of_animals} pounds of food."
+      "You got #{num_of_animals} squirrels, #{num_of_animals} deer, and #{num_of_animals} bison for #{num_of_animals} pounds of food."
+    else
+      animals = ["squirrel", "deer", "bison"]
+      animal_selector = []
+      num_of_animals.times do |animal_total|
+        animal_selector.push(animals[(rand(0..2))])
+      end
+      animal_pounds = 0
+      animal_selector.each do |animal_weight|
+        animal_meat = hunting_values[animal_weight]
+        animal_pounds += animal_meat
+      end
+      squirrel = 0
+      deer = 0
+      bison = 0
+      animal_selector.each do |animals|
+        if animals == "squirrel"
+          squirrel += 1
+        elsif animals == "deer"
+          deer += 1
+        elsif animals == "bison"
+          bison += 1
+        end
+      end
+      supplies(animal_pounds)
+      "You got #{squirrel} squirrel#{"s" if squirrel > 1}, #{deer} deer, and #{bison} bison for #{animal_pounds} pounds of food"
     end
-    animals = ["squirrel", "deer", "bison"]
-    animal_selector = []
-    num_of_animals.times do |animal_total|
-      animal_selector.push(animals[(rand(0..2))])
-    end
-    animal_pounds = 0
-    animal_selector.each do |animal_weight|
-      animal_meat = hunting_values[animal_weight]
-      animal_pounds += animal_meat
-    end
-    puts "You got #{animal_selector} for #{animal_pounds} pounds of food"
-    supplies(animal_pounds)
   end
 
 end
