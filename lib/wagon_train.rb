@@ -18,4 +18,8 @@ class WagonTrain
   def supplies
     list.supplies
   end
+
+  def go_hunting
+    list.go_hunting
+  end
 end
