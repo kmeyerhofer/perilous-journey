@@ -23,7 +23,6 @@ class LinkedList
   def count
     current = @head
     counter = 0
-
     while current != nil
       counter += 1
       current = current.next_node
@@ -75,9 +74,9 @@ class LinkedList
     end
   end
 
-  def includes?(inc)
+  def includes?(includes)
     current = @head
-    while current != nil && current.surname != inc
+    while current != nil && current.surname != includes
       current = current.next_node
     end
     if current == nil
@@ -87,7 +86,7 @@ class LinkedList
     end
   end
 
-  def find(x, y)
+  def find(position, length)
     find_array = []
     counter = 0
     counter_two = 1
@@ -95,16 +94,16 @@ class LinkedList
       "No value"
     else
       current = @head
-      while current != nil && counter != x
+      while current != nil && counter != position
         counter += 1
         current = current.next_node
       end
-      while current != nil && counter == x
+      while current != nil && counter == position
         counter += 1
         find_array.push("The #{current.surname} family")
         current = current.next_node
       end
-      while current != nil && counter_two < y
+      while current != nil && counter_two < length
         counter_two += 1
         find_array.push(", followed by the #{current.surname} family")
         current = current.next_node
@@ -115,7 +114,6 @@ class LinkedList
 
   def pop
     current = @head
-    count
     counter = 1
     while current != nil && counter != count - 1
       counter += 1
