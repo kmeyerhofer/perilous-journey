@@ -107,11 +107,15 @@ class NodeTest < Minitest::Test
   end
 
   def test_go_hunting
-    skip
     list = WagonTrain.new
-    list.append("Burke", {"pounds of food" => 200})
-    list.append("Marshall", {"pounds of food" => 200})
-    assert_equal ({"pounds of food" => 306}), list.go_hunting
+    list.append("Frost", {"spare wagon tongues" => 2})
+    list.append("Jones", {"pounds of food" => 0})
+    list.go_hunting
+    if list.supplies["pounds of food"] == 0
+      assert list.supplies["pounds of food"] == 0
+    else
+      assert (list.supplies["pounds of food"] > 1)
+    end
   end
 
 end
