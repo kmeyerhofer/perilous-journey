@@ -7,6 +7,7 @@ class LinkedList
   end
 
   def append(surname, supplies)
+    # duplicated code for inserting,make insert method
     if @head == nil
       node = Node.new(surname, supplies)
       @head = node
@@ -36,6 +37,7 @@ class LinkedList
       "No value"
     else
       current = @head
+      # maybe tray a while else
       while current != nil && counter < 1
         counter += 1
         name_array.push("The #{current.surname} family")
@@ -67,6 +69,7 @@ class LinkedList
     end
     if current != nil && counter == position - 1
       counter += 1
+      # previous_node.insert(surname, supplies)
       previous_node = current
       node.next_node = current.next_node
       previous_node.next_node = node
@@ -78,11 +81,12 @@ class LinkedList
     while current != nil && current.surname != includes
       current = current.next_node
     end
-    if current == nil
-      false
-    else
-      true
-    end
+    !current.nil?
+    # if current == nil
+    #   false
+    # else
+    #   true
+    # end
   end
 
   def find(position, length)
@@ -135,6 +139,7 @@ class LinkedList
           current_hash["pounds of food"] += hunting
           summed_hash.store(key, (value + hunting))
           hunting_counter += 1
+          # summed_hash.has_key?(key) ? summed_hash[key] += value : summed_hash.store(key, value)
         elsif summed_hash.has_key?(key)
           summed_hash[key] += value
         else
@@ -165,6 +170,8 @@ class LinkedList
         animal_meat = hunting_values[animal_weight]
         animal_pounds += animal_meat
       end
+      # {'squirrel': 0, }
+      # squirrel, deer, bison = [0, 0, 0]
       squirrel = 0
       deer = 0
       bison = 0
@@ -177,7 +184,7 @@ class LinkedList
           bison += 1
         end
       end
-      supplies(animal_pounds)
+      supplies(animal_pounds) # make a new method to update supplies after hunting
       "You got #{squirrel} squirrel#{"s" if squirrel > 1}, #{deer} deer, and #{bison} bison for #{animal_pounds} pounds of food"
     end
   end

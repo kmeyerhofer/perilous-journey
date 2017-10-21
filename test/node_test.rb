@@ -5,12 +5,13 @@ require './lib/wagon_train'
 
 class NodeTest < Minitest::Test
 
-  def test_node
+  def test_node_properties
     node = Node.new("Burke", {"pounds of food" => 200})
     assert_equal "Burke", node.surname
+    # add test for supplies attr
   end
 
-  def test_next
+  def test_next_returns_nil_for_new_node
     node = Node.new("Burken", {"pounds of food" => 200})
     assert_nil node.next_node
   end
@@ -19,6 +20,8 @@ class NodeTest < Minitest::Test
     list = LinkedList.new
     assert_nil list.head
   end
+
+  # add test for not nil next_node & not_nil head
 
   def test_linked_list_append
     list = LinkedList.new

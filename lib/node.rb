@@ -8,4 +8,9 @@ class Node
     @supplies = supplies
   end
 
+  # def insert(surname, supplies)
+  #   new_node = Node.new(surname, supplies)
+  #   @next_node = new_node
+  # end
+
 end
