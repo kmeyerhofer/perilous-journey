@@ -1,5 +1,4 @@
 require_relative 'node.rb'
-require 'pry'
 class LinkedList
   attr_accessor :head, :count, :append, :go_hunting
 
